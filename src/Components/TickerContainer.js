@@ -27,7 +27,7 @@ export default function TickerContainer() {
     const [stockPrices, setStockPrices] = useState( []);
 
     const handleChange = (event, newValue) => {
-        // setValue(newValue);
+
     };
 
     useEffect(() => {
@@ -49,12 +49,6 @@ export default function TickerContainer() {
 
             let oldStockPrices = stockPrices;
 
-            // _.forEach(updatedStockPrices, (updatedStockPrice)=>{
-            //     console.log(updatedStockPrice[0].toString());
-            //     console.log(updatedStockPrice[1]);
-            //     oldStockPrices[updatedStockPrice[0].toString()] = updatedStockPrice[1];
-            // })
-
                 _.forEach(updatedStockPrices, (updatedStockPrice,index)=>{
 
                         let mathcedFlag = false;
@@ -73,7 +67,6 @@ export default function TickerContainer() {
 
                                 let newValue = JSON.parse(JSON.stringify(oldStockValue));//clone
 
-                                // newValue.values = [];
                                 if(!newValue){
                                     newValue = {};
                                 }
@@ -81,7 +74,6 @@ export default function TickerContainer() {
                                     newValue.values = [];
                                 }
                                 newValue.values.push(updatedStockValue);
-
 
                                 let previousOldStockValue = oldStockValue.values[oldStockValue.values.length - 1];
 

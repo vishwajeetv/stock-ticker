@@ -8,10 +8,7 @@ import {deepOrange, orange} from "@material-ui/core/colors";
 import {ThemeProvider} from "@material-ui/styles";
 
 const theme = createMuiTheme({
-    // palette: {
-    //     primary: orange,
-    //     secondary: deepOrange
-    // },
+
 });
 
 function App() {
