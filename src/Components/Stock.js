@@ -1,29 +1,33 @@
 import React, {useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-
-
 import _ from "lodash";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
 import {Typography} from "@material-ui/core";
+import TrendingUpIcon from "@material-ui/icons/TrendingUp";
+import TrendingDownIcon from "@material-ui/icons/TrendingDown";
+
+import { Sparklines, SparklinesLine } from 'react-sparklines';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
     greenBackground:{
-        backgroundColor:"green"
+        backgroundColor:"lightgreen"
     },
     redBackGround:{
-        backgroundColor:"red"
+        backgroundColor:"orange"
     },
     defautBackGround:{
 
+    },
+    icon:{
+        marginBottom:'-5px'
     }
-
 }));
 
 
@@ -39,13 +43,29 @@ export default function Stock(props) {
             return classes.defautBackGround
         }
     }
+
+    const history = props.histoy;
+
     return (
         <React.Fragment>
-                    <Paper className={getBackGroundColorClass()}>
+                    <Card className={getBackGroundColorClass()}>
                         <CardHeader title={props.stock}></CardHeader>
-                        <CardContent><Typography variant={"body2"}> {props.price}</Typography></CardContent>
-                        <CardContent><Typography variant={"body2"}> {props.change.toUpperCase()}</Typography></CardContent>
-                    </Paper>
+                        <CardContent>
+                            <Typography variant={"body2"}>
+                                {props.change==='positive' &&
+                                    <TrendingUpIcon className={classes.icon}/>
+                                }
+                                {props.change==='negative' &&
+                                    <TrendingDownIcon className={classes.icon}/>
+                                }
+                                {props.price}</Typography>
+
+
+                        </CardContent>
+                        <Sparklines data={props.histoy} limit={100} width={100} height={20} margin={5}>
+                            <SparklinesLine color="blue" width={'1px'} />
+                        </Sparklines>
+                    </Card>
         </React.Fragment>
     );
 }
