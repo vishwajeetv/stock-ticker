@@ -70,7 +70,7 @@ export default function Stock(props) {
                     <Card className={getBackGroundColorClass()}>
                         <CardHeader
                             title={props.stock}
-                            subheader={moment(props.updateTime).fromNow()}
+                            subheader={`Updated ${moment(props.updateTime).fromNow(true)}`}
                         ></CardHeader>
                         <CardContent>
                             <Typography variant={"body2"}>
