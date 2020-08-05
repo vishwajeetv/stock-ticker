@@ -84,7 +84,7 @@ export default function TickerContainer() {
 
 
                                 let previousOldStockValue = oldStockValue.values[oldStockValue.values.length - 1];
-                                console.log({previousOldStockValue})
+
                                 if((previousOldStockValue  - updatedStockValue) > 0){
                                     newValue.change = "negative";
                                 }else if((previousOldStockValue  - updatedStockValue) < 0){
@@ -92,6 +92,7 @@ export default function TickerContainer() {
                                 }else{
                                     newValue.change = "nochange";
                                 }
+                                newValue.updateTime = new Date();
                                 oldStockPrices[oldStockIndex][updatedStockName].value = newValue;
 
                             }
@@ -103,9 +104,12 @@ export default function TickerContainer() {
 
                             let stockToAdd = {};
                             stockToAdd[updatedStockName] = {};
+
                             let newValue = {};
                             newValue.values =  [updatedStockValue];
                             newValue.change = "nochange";
+
+                            newValue.updateTime = new Date();
 
                             stockToAdd[updatedStockName].value = newValue;
 
@@ -134,6 +138,7 @@ export default function TickerContainer() {
                         return (<Grid item xs={4} sm={3} md={3} key={Object.keys(stock)[0]}>
                             <Stock
                                 stock={Object.keys(stock)[0]}
+                                updateTime={stock[Object.keys(stock)[0]].value.updateTime}
                                 histoy={stock[Object.keys(stock)[0]].value.values}
                                 price={stock[Object.keys(stock)[0]].value.values.slice(-1)[0]}
                                 change={stock[Object.keys(stock)[0]].value.change}
